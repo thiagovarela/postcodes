@@ -1,0 +1,7 @@
+language: python
+python:
+    - "2.7"
+script: python -m unittest discover
+addons:
+    code_climate:
+        repo_token: eef3d50c8e002391996d57670c81a997228ed5b0bb6bfbe0ca9dcc07bb675dfa
