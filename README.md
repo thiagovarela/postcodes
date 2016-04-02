@@ -9,7 +9,7 @@
 
 ```bash
 
-pip install https://github.com/thiagovarela/postcodes
+pip install git+git://github.com/thiagovarela/postcodes.git
 
 ```
 
