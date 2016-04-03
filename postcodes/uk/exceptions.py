@@ -1,5 +1,3 @@
-
-
 class InvalidPostCode(Exception):
     pass
 

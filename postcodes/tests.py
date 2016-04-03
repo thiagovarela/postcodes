@@ -1,24 +1,24 @@
 import unittest
 
-from postcodes import uk
-from postcodes.uk.exceptions import InvalidPostCode
+import uk
+from uk.exceptions import InvalidPostCode
 
 
 class TestUKPostCodes(unittest.TestCase):
 
     def test_should_raise_invalid_postcode(self):
-        self.assertRaises(uk.exceptions.InvalidPostCode, uk.validate, 'XX10 Y###')
-        self.assertRaises(uk.exceptions.InvalidPostCode, uk.validate, 'EC1A 1BBBBBBB')
-        self.assertRaises(uk.exceptions.InvalidPostCode, uk.validate, 'EC1AX1BBBBBBB')
-        self.assertRaises(uk.exceptions.InvalidPostCode, uk.validate, 'EC1AXBBBBBBB')
+        self.assertRaises(InvalidPostCode, uk.validate, 'XX10 Y###')
+        self.assertRaises(InvalidPostCode, uk.validate, 'EC1A 1BBBBBBB')
+        self.assertRaises(InvalidPostCode, uk.validate, 'EC1AX1BBBBBBB')
+        self.assertRaises(InvalidPostCode, uk.validate, 'EC1AXBBBBBBB')
         self.assertRaises(TypeError, uk.validate, 123456)
 
     def test_should_return_false_invalid_postcode(self):
-        self.assertFalse(uk.validate('XXX10 Y###', False))
+        self.assertFalse(uk.validate('XXX10 Y###', raise_exception=False))
 
     def test_should_validate_postcode(self):
-        self.assertTrue(uk.validate('EC1A 1BB'))
-        self.assertTrue(uk.validate('ec1a1hq'))
+        self.assertEquals(uk.validate('EC1A 1BB'), 'EC1A 1BB')
+        self.assertEquals(uk.validate('ec1a1hq'), 'EC1A 1HQ')
 
     def test_should_raise_invalid_postcode_qvx_first_pos(self):
         self.assertRaises(InvalidPostCode, uk.validate, 'QC1A 1GB')
